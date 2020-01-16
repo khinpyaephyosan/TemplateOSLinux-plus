@@ -2,9 +2,9 @@
 
 # Get current memory usage
 if [ -f "/etc/redhat-release" ]; then
-        MemUsage=`free | awk 'NR==2 {printf("%d %d %d %d",$2,$4,$6,$7)}'`
+        MemUsage=`free | awk 'NR==2 {printf("%d %d %d %d",$2,$4,$6,$6)}'`
 elif [ -f "/etc/lsb-release" ]; then
-        MemUsage=`free -w | awk 'NR==2 {printf("%d %d %d %d",$2,$4,$6,$7)}'`
+        MemUsage=`free -w | awk 'NR==2 {printf("%d %d %d %d",$2,$4,$6,$6)}'`
 else
         echo "Not supported distribution."
 fi
@@ -16,7 +16,7 @@ Buff=`echo $MemUsage | awk '{print $3}'`
 Cached=`echo $MemUsage | awk '{print $4}'`
 
 # Create JSON string
-echo "$MemUsage $(( Total -  Free - Buff - Cached))" | \
+echo "$MemUsage $(( Total -  (Free + Buff)))" | \
 awk \
 '{printf("{\
 \"MEM_TOTAL\":%d ,\
