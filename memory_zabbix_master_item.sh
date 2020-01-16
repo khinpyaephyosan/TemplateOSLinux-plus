@@ -10,7 +10,7 @@ else
 fi
 
 # Retrieve each element
-#buff and cache value are the same 
+#buff and cache value are assigned by same value
 Total=`echo $MemUsage | awk '{print $1}'`
 Free=`echo $MemUsage | awk '{print $2}'`
 Buff=`echo $MemUsage | awk '{print $3}'`
