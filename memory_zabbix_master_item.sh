@@ -10,7 +10,6 @@ else
 fi
 
 # Retrieve each element
-#buff and cache value are the same 
 Total=`echo $MemUsage | awk '{print $1}'`
 Free=`echo $MemUsage | awk '{print $2}'`
 Buff=`echo $MemUsage | awk '{print $3}'`
@@ -26,4 +25,3 @@ awk \
 \"MEM_CACHED\":%d ,\
 \"MEM_USED\":%d }",\
 $1,$2,$3,$4,$5)}'
-
